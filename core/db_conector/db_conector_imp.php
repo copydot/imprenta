@@ -110,6 +110,6 @@ class DBObject {
         }
         self::finalizar(); # cerrar conexiones abiertas
     }
-
 }
 ?>
+
