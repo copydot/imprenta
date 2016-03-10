@@ -1,0 +1,24 @@
+# deshabilita navegación por directorios
+#Options All –Indexes
+
+# protege archivo .htaccess
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# protege archivo settings.php
+<files settings.php>
+order allow,deny
+deny from all
+</files>
+
+RewriteEngine On
+#!!!! para desarrollo Condición: si no hace referencia a una carpeta que existe en el servidor
+RewriteCond %{REQUEST_FILENAME} !-d 
+#!!!! para desarrollo Condición si no hace referencia a un archivo que existe en el servidor.
+RewriteCond %{REQUEST_FILENAME} !-f 
+#Condición si no hace referencia a un enlace simbolico. similar a acceso directo
+RewriteCond %{REQUEST_FILENAME} !-l 
+#L asegura que no se procesaran mas reglas de reescritura
+RewriteRule ^(.+)$ index.php [QSA,L] 
